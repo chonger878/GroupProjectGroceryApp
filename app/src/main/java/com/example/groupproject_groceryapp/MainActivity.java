@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,11 +23,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
-
         //recipe button with on click listener to go to recipe fragment
-        Button recipesBtn = (Button) findViewById(R.id.recipesBtn);
+        Button recipesBtn = findViewById(R.id.recipesBtn);
+        recipesBtn.setOnClickListener(v -> {
+            RecipesFragment fragment = (RecipesFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.recipes_frag_container);
+        });
 
         Log.i(TAG, "onCreate()");
     }

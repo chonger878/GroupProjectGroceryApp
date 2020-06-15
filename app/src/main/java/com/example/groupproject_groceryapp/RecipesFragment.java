@@ -35,10 +35,8 @@ public class RecipesFragment extends Fragment {
 
     private ArrayList<Recipe> mDataSet;
     public static final String ARG_DATA_SET = "data-set";
-    private ArrayList<String> ids;
     private ArrayList<String> names;
     private ArrayList<String> imageUris;
-    private RecipesFragmentViewModel viewModel;
 
     // Mandatory empty constructor to instantiate frag (eg: screen orientation change)
     public RecipesFragment() {
@@ -61,27 +59,14 @@ public class RecipesFragment extends Fragment {
         RecyclerView recipeRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes,
                 container, false);
 
-        // add names
         names = new ArrayList<>();
         imageUris = new ArrayList<>();
 
-        viewModel = new RecipesFragmentViewModel();
-        viewModel.getRecipes((ArrayList<Recipe> recipeDataSet) -> {
-            for(int i = 0; i < recipeDataSet.size(); i++){
-                ids.add(recipeDataSet.get(i).getId());
-                names.add(recipeDataSet.get(i).getName());
-                imageUris.add(recipeDataSet.get(i).getImageUri());
-
-        for(int i = 0; i < recipeNames.length; i++) {
-            recipeNames[i] = Recipe.recipes[i].getName();
+        for(int i = 0; i < names.size(); i++) {
+            names.add(mDataSet.get(i).getName());
+            imageUris.add(mDataSet.get(i).getImageUri());
         }
 
-        // add images
-        int[] recipeImages = new int[Recipe.recipes.length];
-
-        for (int i = 0; i < recipeImages.length; i++) {
-            recipeImages[i] = Recipe.recipes[i].getImageUri();
-        }
 
         // set adapter
         CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(mDataSet);

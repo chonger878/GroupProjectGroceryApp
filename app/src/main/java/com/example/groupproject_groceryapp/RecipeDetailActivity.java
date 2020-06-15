@@ -7,7 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,13 +20,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
     public static final String EXTRA_RECIPE_ID = "recipeId";
     private ArrayList<Recipe> recipeDataSet;
 
-    private ArrayList<String> ids;
-    private ArrayList<String> names;
-    private ArrayList<String> imageUris;
-    private ArrayList<String> instructions;
-    private ArrayList<ArrayList> ingredients;
-
-    private RecipesFragmentViewModel viewModel;
+    public RecipeDetailActivity(ArrayList<Recipe> recipeDataSet) {
+        this.recipeDataSet = recipeDataSet;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,54 +33,36 @@ public class RecipeDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //Display details of the chosen recipe
         int recipeId = (Integer)getIntent().getExtras().get(EXTRA_RECIPE_ID);
 
-
-
-
-        ids = new ArrayList<>();
-        names = new ArrayList<>();
-        imageUris = new ArrayList<>();
-        instructions = new ArrayList<>();
-        ingredients = new ArrayList<>();
-
-        viewModel = new RecipesFragmentViewModel();
-        viewModel.getRecipes((ArrayList<Recipe> recipeDataSet) -> {
-            for(int i = 0; i < recipeDataSet.size(); i++){
-                ids.add(recipeDataSet.get(i).getId());
-                names.add(recipeDataSet.get(i).getName());
-                imageUris.add(recipeDataSet.get(i).getImageUri());
-                instructions.add(recipeDataSet.get(i).getInstructions());
-                ingredients.add((ArrayList) recipeDataSet.get(i).getIngredients());
-            }
-        });
-
-
-
-
-
         //name
-        String recipeName = Recipe.recipes[recipeId].getName();
-        TextView tvName = (TextView)findViewById(R.id.recipe_title);
+        String recipeName = recipeDataSet.get(recipeId).getName();
+        TextView tvName = findViewById(R.id.recipe_title);
         tvName.setText(recipeName);
 
-        //ingredients
-        String recipeIngredients = Recipe.get(recipeId).getIngredients();
-        TextView tvIngredients = (TextView)findViewById(R.id.recipe_ingredients);
+
+        //ingredients loop toString
+        StringBuilder recipeIngredients = new StringBuilder();
+        for(int i = 0; i < recipeDataSet.size(); i++) {
+            recipeIngredients.append(recipeDataSet.get(i).getIngredients());
+            recipeIngredients.append("/n");
+        }
+        TextView tvIngredients = findViewById(R.id.recipe_ingredients);
         tvIngredients.setText(recipeIngredients);
 
         //instructions
-        String recipeInstructions = Recipe.recipes[recipeId].getInstructions();
-        TextView tvInstructions = (TextView)findViewById(R.id.recipe_instructions);
+        String recipeInstructions = recipeDataSet.get(recipeId).getInstructions();
+        TextView tvInstructions = findViewById(R.id.recipe_instructions);
         tvInstructions.setText(recipeInstructions);
 
         //image
-        int recipeImage = Recipe.recipes[recipeId].getImageUri();
-        ImageView imageView = (ImageView)findViewById(R.id.recipe_image);
-        imageView.setImageDrawable(ContextCompat.getDrawable(this, recipeImage));
+        String recipeImage = recipeDataSet.get(recipeId).getImageUri();
+        ImageView imageView = findViewById(R.id.recipe_image);
+        Picasso.get().load(recipeImage).into(imageView);
 
         imageView.setContentDescription(recipeName);
     }

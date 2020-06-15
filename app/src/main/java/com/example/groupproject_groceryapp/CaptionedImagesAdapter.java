@@ -68,10 +68,12 @@ public class CaptionedImagesAdapter
 //        this.imageUris = imageUris;
 
         ids = new ArrayList<>();
+        ingredients = new ArrayList<>();
+        instructions = new ArrayList<>();
         names = new ArrayList<>();
         imageUris = new ArrayList<>();
-        instructions = new ArrayList<>();
-        ingredients = new ArrayList<>();
+
+
 
         viewModel = new RecipesFragmentViewModel();
         viewModel.getRecipes((ArrayList<Recipe> recipeDataSet) -> {

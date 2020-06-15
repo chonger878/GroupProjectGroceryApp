@@ -20,7 +20,8 @@ public class Recipe implements Parcelable {
     public String name;
     public String instructions;
     public ArrayList<String> ingredients;
-    String imageUri = "https://en.wikipedia.org/wiki/Food#/media/File:Good_Food_Display_-_NCI_Visuals_Online.jpg";
+    String imageUri =
+            "https://en.wikipedia.org/wiki/Food#/media/File:Good_Food_Display_-_NCI_Visuals_Online.jpg";
 
     public Recipe() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -50,15 +51,19 @@ public class Recipe implements Parcelable {
     public String getId() {
         return id;
     }
+
     public String getImageUri() {
         return imageUri;
     }
+
     public String getName() {
         return name;
     }
+
     public String getInstructions() {
         return instructions;
     }
+
     public List<String> getIngredients() {
         return ingredients;
     }
@@ -74,34 +79,35 @@ public class Recipe implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
     }
-
-
-
-
-
-    private ArrayList<Recipe> recipeDataSet;
-
-    private ArrayList<String> ids;
-    private ArrayList<String> names;
-    private ArrayList<String> imageUris;
-    private ArrayList<String> instructions;
-    private ArrayList<ArrayList> ingredients;
-    private RecipesFragmentViewModel viewModel;
-
-    ids = new ArrayList<>();
-    names = new ArrayList<>();
-    imageUris = new ArrayList<>();
-    instructions = new ArrayList<>();
-    ingredients = new ArrayList<>();
-
-    viewModel = new RecipesFragmentViewModel();
-        viewModel.getRecipes((ArrayList<Recipe> recipeDataSet) -> {
-        for(int i = 0; i < recipeDataSet.size(); i++){
-            ids.add(recipeDataSet.get(i).getId());
-            names.add(recipeDataSet.get(i).getName());
-            imageUris.add(recipeDataSet.get(i).getImageUri());
-            instructions.add(recipeDataSet.get(i).getInstructions());
-            ingredients.add((ArrayList) recipeDataSet.get(i).getIngredients());
-        }
-    });
 }
+//
+//
+//
+//
+//
+//    private ArrayList<Recipe> recipeDataSet;
+//
+//    private ArrayList<String> ids;
+//    private ArrayList<String> names;
+//    private ArrayList<String> imageUris;
+//    private ArrayList<String> instructions;
+//    private ArrayList<ArrayList> ingredients;
+//    private RecipesFragmentViewModel viewModel;
+//
+//    ids = new ArrayList<>();
+//    names = new ArrayList<>();
+//    imageUris = new ArrayList<>();
+//    instructions = new ArrayList<>();
+//    ingredients = new ArrayList<>();
+//
+//    viewModel = new RecipesFragmentViewModel();
+//        viewModel.getRecipes((ArrayList<Recipe> recipeDataSet) -> {
+//        for(int i = 0; i < recipeDataSet.size(); i++){
+//            ids.add(recipeDataSet.get(i).getId());
+//            names.add(recipeDataSet.get(i).getName());
+//            imageUris.add(recipeDataSet.get(i).getImageUri());
+//            instructions.add(recipeDataSet.get(i).getInstructions());
+//            ingredients.add((ArrayList) recipeDataSet.get(i).getIngredients());
+//        }
+//    });
+
