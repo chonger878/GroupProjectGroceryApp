@@ -36,14 +36,16 @@ public class MainActivity extends AppCompatActivity {
         recipesBtn.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+              Intent intent = new Intent(MainActivity.this, recipesFragment.class)
+                  startActivity(intent);
 //                  transaction.replace(R.id.recipes_frag_container, recipesFragment).commit();
-              if (findViewById(R.id.recipes_frag_container) != null) {
-                  if (savedInstanceState != null) {
-                      return;
-                  }
-                  RecipesFragment recipesFragment = new RecipesFragment();
-                  getSupportFragmentManager().beginTransaction()
-                          .add(R.id.recipes_frag_container, recipesFragment).commit();
+//              if (findViewById(R.id.recipes_frag_container) != null) {
+//                  if (savedInstanceState != null) {
+//                      return;
+//                  }
+//                  RecipesFragment recipesFragment = new RecipesFragment();
+//                  getSupportFragmentManager().beginTransaction()
+//                          .add(R.id.recipes_frag_container, recipesFragment).commit();
               }
           }
       });
