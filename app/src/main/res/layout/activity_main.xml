@@ -26,7 +26,8 @@
         android:text="@string/go_to_recipes_btn"
         app:layout_constraintTop_toBottomOf="@id/welcome"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:onClick="goToRecipes" />
 
     <FrameLayout
         android:name="com.example.groupproject_groceryapp.RecipesFragment"
