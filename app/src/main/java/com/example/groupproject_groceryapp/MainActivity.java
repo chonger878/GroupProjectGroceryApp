@@ -21,7 +21,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-
+    private FragmentManager fManager;
 //    // Create new fragment and transaction
 //    Fragment recipesFragment = new RecipesFragment();
 //    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -37,19 +37,18 @@ public class MainActivity extends AppCompatActivity {
           @Override
           public void onClick(View v) {
 //                  transaction.replace(R.id.recipes_frag_container, recipesFragment).commit();
-              if (findViewById(R.id.recipes_frag_container) != null) {
-                  if (savedInstanceState != null) {
-                      return;
-                  }
                   RecipesFragment recipesFragment = new RecipesFragment();
-                  getSupportFragmentManager().beginTransaction()
-                          .add(R.id.recipes_frag_container, recipesFragment).commit();
+                   FragmentTransaction fTransaction = fManager.beginTransaction();
+           
+                          fTransaction.add(R.id.recipes_frag_container, recipesFragment).commit();
               }
           }
       });
 
 //        Log.i(TAG, "onCreate()");
     }
+    
+    
 
     ////////////////////////ALLERGIES ACTIVITY//////////////////////////////////////////////////////
 //    public void toAllergies(View view){
