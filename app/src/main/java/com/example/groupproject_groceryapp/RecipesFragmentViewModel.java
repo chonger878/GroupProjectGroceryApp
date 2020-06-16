@@ -17,10 +17,10 @@ public class RecipesFragmentViewModel {
         recipeModel.getRecipes(
                 (DataSnapshot dataSnapshot) -> {
                     ArrayList<Recipe> recipes = new ArrayList<>();
-                    for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
-                        Recipe item = recipeSnapshot.getValue(Recipe.class);
+                    for (DataSnapshot recipeSnapshot : dataSnapshot.getDocuments()) {
+                        Recipe item = recipeSnapshot.getObject(Recipe.class);
                         assert item != null;
-                        item.id = recipeSnapshot.getKey();
+                        item.id = recipeSnapshot.getId();
                         recipes.add(item);
                     }
                     responseCallback.accept(recipes);
