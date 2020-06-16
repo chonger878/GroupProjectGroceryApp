@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,8 +27,7 @@ import java.util.List;
 
 /**
  * A top level fragment representing a list of Recipes. Upon selection, it takes care of
- * displaying data to user. Activities containing this fragment MUST implement
- * {@link OnRecipesFragmentInteractionListener} interface.
+ * displaying data to user.
  */
 public class RecipesFragment extends Fragment {
 
@@ -49,6 +49,7 @@ public class RecipesFragment extends Fragment {
         if (getArguments() != null) {
             mDataSet = getArguments().getParcelableArrayList(ARG_DATA_SET);
         }
+        Log.i(TAG, "onCreate()");
     }
 
     // RecyclerView uses adapter and layout manager to display recipes in grid
@@ -58,6 +59,11 @@ public class RecipesFragment extends Fragment {
                              Bundle savedInstanceState) {
         RecyclerView recipeRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes,
                 container, false);
+
+
+
+
+
 
         names = new ArrayList<>();
         imageUris = new ArrayList<>();
@@ -75,14 +81,14 @@ public class RecipesFragment extends Fragment {
         recipeRecycler.setLayoutManager(layoutManager);
 
         // set listener
-        adapter.setListener(new CaptionedImagesAdapter.Listener() {
-            public void onClick(int position) {
-                Intent intent = new Intent(getActivity(), RecipeDetailActivity.class);
-                intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, position);
-                getActivity().startActivity(intent);
-            }
+        adapter.setListener(position -> {
+            Intent intent = new Intent(getActivity(), RecipeDetailActivity.class);
+            intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, position);
+            getActivity().startActivity(intent);
         });
 
         return recipeRecycler;
     }
+
+
 }

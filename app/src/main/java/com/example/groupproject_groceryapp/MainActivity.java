@@ -1,14 +1,18 @@
 package com.example.groupproject_groceryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,20 +22,45 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
+//    FragmentManager fragmentManager = getSupportFragmentManager();
+//    FragmentTransaction transaction = fragmentManager.beginTransaction();
+    // Create new fragment and transaction
+    Fragment recipesFragment = new RecipesFragment();
+    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_signin);
 
-        //recipe button with on click listener to go to recipe fragment
+
         Button recipesBtn = findViewById(R.id.recipesBtn);
-        recipesBtn.setOnClickListener(v -> {
-            RecipesFragment fragment = (RecipesFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.recipes_frag_container);
+        recipesBtn.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  transaction.replace(R.id.recipes_frag_container, recipesFragment);
+                  // Commit the transaction
+                  transaction.commit();
+              }
         });
 
         Log.i(TAG, "onCreate()");
     }
+
+
+//
+//    //LayoutInflater inflater, ViewGroup container,
+//    //                Bundle savedInstanceState
+//    public void addRecipeFragment(Context context, Bundle savedInstanceState) {
+//        Fragment recipesFragment = new RecipesFragment();
+//        recipesFragment.onAttach(context);
+//        recipesFragment.onCreate(savedInstanceState);
+//    }
+
+
+
 
 
     @Override
