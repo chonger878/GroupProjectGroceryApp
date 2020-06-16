@@ -7,6 +7,8 @@
     tools:context=".MainActivity">
 
     <TextView
+
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -14,5 +16,32 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/recipesBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_recipes_btn"
+        app:layout_constraintTop_toBottomOf="@id/welcome"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:name="com.example.groupproject_groceryapp.RecipesFragment"
+        android:id="@+id/recipes_frag_container"
+        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/enterBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text="@string/click_to_enter"-->
+<!--        android:onClick="goToSecondActivity"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

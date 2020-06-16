@@ -22,8 +22,6 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-//    FragmentManager fragmentManager = getSupportFragmentManager();
-//    FragmentTransaction transaction = fragmentManager.beginTransaction();
     // Create new fragment and transaction
     Fragment recipesFragment = new RecipesFragment();
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -31,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_main);
 
 
         Button recipesBtn = findViewById(R.id.recipesBtn);
@@ -48,6 +44,20 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG, "onCreate()");
     }
+
+    ////////////////////////ALLERGIES ACTIVITY//////////////////////////////////////////////////////
+//    public void toAllergies(View view){
+//        Intent intent = new Intent(MainActivity.this, AllergiesActivity.class);
+//        startActivity(intent);
+//    }
+
+
+
+
+//    public void goToSecondActivity(View view){
+//        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+//        startActivity(intent);
+//    }
 
 
 //
