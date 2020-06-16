@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_main);
 
 
 
@@ -19,10 +19,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void toAllergies(View view){
-        Intent intent = new Intent(MainActivity.this, AllergiesActivity.class);
+    public void goToSecondActivity(View view){
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         startActivity(intent);
+
     }
+
+    //public void toAllergies(View view){
+    //    Intent intent = new Intent(MainActivity.this, AllergiesActivity.class);
+    //    startActivity(intent);
+    //}
 
 
 }
