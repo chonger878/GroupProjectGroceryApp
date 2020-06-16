@@ -33,6 +33,7 @@ public class RecipesFragment extends Fragment {
 
     private static final String TAG = RecipesFragment.class.getSimpleName();
 
+
     private ArrayList<Recipe> mDataSet;
     public static final String ARG_DATA_SET = "data-set";
     private ArrayList<String> names;
@@ -42,15 +43,13 @@ public class RecipesFragment extends Fragment {
     public RecipesFragment() {
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mDataSet = getArguments().getParcelableArrayList(ARG_DATA_SET);
-        }
-        Log.i(TAG, "onCreate()");
-    }
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//
+//        Log.i(TAG, "onCreate()");
+//    }
 
     // RecyclerView uses adapter and layout manager to display recipes in grid
     // Calls onCreateView each time Android needs the fragment's layout
@@ -59,6 +58,9 @@ public class RecipesFragment extends Fragment {
                              Bundle savedInstanceState) {
         RecyclerView recipeRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_recipes,
                 container, false);
+        if (getArguments() != null) {
+            mDataSet = getArguments().getParcelableArrayList(ARG_DATA_SET);
+        }
 
 
 
@@ -89,6 +91,9 @@ public class RecipesFragment extends Fragment {
 
         return recipeRecycler;
     }
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
 }

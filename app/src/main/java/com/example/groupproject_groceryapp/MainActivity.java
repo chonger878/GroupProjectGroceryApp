@@ -22,9 +22,9 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    // Create new fragment and transaction
-    Fragment recipesFragment = new RecipesFragment();
-    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//    // Create new fragment and transaction
+//    Fragment recipesFragment = new RecipesFragment();
+//    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
         Button recipesBtn = findViewById(R.id.recipesBtn);
         recipesBtn.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  transaction.replace(R.id.recipes_frag_container, recipesFragment);
-                  // Commit the transaction
-                  transaction.commit();
+          @Override
+          public void onClick(View v) {
+//                  transaction.replace(R.id.recipes_frag_container, recipesFragment).commit();
+              if (findViewById(R.id.recipes_frag_container) != null) {
+                  if (savedInstanceState != null) {
+                      return;
+                  }
+                  RecipesFragment recipesFragment = new RecipesFragment();
+                  getSupportFragmentManager().beginTransaction()
+                          .add(R.id.recipes_frag_container, recipesFragment).commit();
               }
-        });
+          }
+      });
 
-        Log.i(TAG, "onCreate()");
+//        Log.i(TAG, "onCreate()");
     }
 
     ////////////////////////ALLERGIES ACTIVITY//////////////////////////////////////////////////////
